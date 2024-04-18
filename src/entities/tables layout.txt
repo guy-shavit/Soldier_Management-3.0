@@ -1,0 +1,79 @@
+-------------------------------------------------------------
+Soldier Table
+
+Columns:
+
+id (Primary Key)
+firstName
+lastName
+role (Enum: Soldier, TeamCommander, DepartmentCommander)
+teamId (Foreign Key from Team)
+startDate
+endDate
+
+Relationships:
+
+ManyToOne with Team: A soldier belongs to one team, represented by teamId
+OneToMany with Event: A soldier can have multiple events
+
+-------------------------------------------------------------
+
+Department Table
+
+Columns:
+
+id (Primary Key)
+name
+number (Unique)
+departmentCommanderId (Foreign Key from Soldier)
+
+Relationships:
+
+OneToOne with Soldier (as DepartmentCommander) Each department has one soldier as a commander
+OneToMany with Team: A department can have multiple teams
+
+-------------------------------------------------------------------------
+
+Team Table
+Columns:
+
+id (Primary Key)
+name
+number (Unique)
+departmentId (Foreign Key from Department)
+teamCommanderId (Foreign Key from Soldier)
+
+Relationships:
+
+ManyToOne with Department: A team belongs to one department.
+OneToMany with Soldier: A team can have multiple soldiers.
+ManyToOne with Soldier (as TeamCommander): A team is commanded by one soldier, who is a TeamCommander.
+
+-----------------------------------------------------------
+
+Event Table
+Columns:
+
+id (Primary Key)
+eventName
+soldierId (Foreign Key from Soldier)
+startDate
+endDate
+Relationships:
+
+ManyToOne with Soldier: An event is directly associated with one soldier.
+
+
+
+
+
+
+
+
+
+
+
+---------------------------------------------
+
+
+curl -X POST http://localhost:3000/soldiers -H "Content-Type: application/json" -d "{\"firstName\": \"John\", \"lastName\": \"Doe\", \"role\": \"Soldier\", \"startDate\": \"2024-01-01\", \"teamId\": 1}"
