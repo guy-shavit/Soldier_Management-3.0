@@ -23,4 +23,10 @@ export class CreateSoldierDto {
   @IsNotEmpty()
   @IsInt()
   teamId: number;
+
+  @IsString()
+  username: string;
+
+  @IsString()
+  password: string;
 }

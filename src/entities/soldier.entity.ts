@@ -32,4 +32,11 @@ export class Soldier {
 
   @Column({ nullable: true })
   endDate: Date;
+
+  @Column({ nullable: true })
+  username: string;
+
+  @Column({ nullable: true })
+  password: string;
+
 }
