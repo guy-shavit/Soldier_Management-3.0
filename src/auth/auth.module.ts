@@ -9,7 +9,7 @@ import { SoldierModule } from '../soldier/soldier.module';
   imports: [
     PassportModule,
     JwtModule.register({
-      secret: process.env.JWT_SECRET || 'your_secret_key_here',
+      secret: process.env.JWT_SECRET || 'very_secret_key',
       signOptions: { expiresIn: '1d' },
     }),
     SoldierModule  
